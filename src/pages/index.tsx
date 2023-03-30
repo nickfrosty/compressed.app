@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import DefaultLayout from "@/layouts/default";
+
 import DataCard from "@/components/DataCard";
 import { numberFormatter } from "@/utils/helpers";
 import {
@@ -117,34 +119,37 @@ export default function Page() {
   }, [treeNodes]);
 
   return (
-    <main className="container py-20 space-y-8">
-      <section className="space-y-4">
-        <h1 className="text-4xl text-center">State Compression Calculator</h1>
+    <DefaultLayout>
+      <main className="container py-20 space-y-8">
+        <section className="space-y-4">
+          <h1 className="text-4xl text-center">State Compression Calculator</h1>
 
-        <p className="text-center text-gray-500 ">
-          How many compressed NFTs do you want to store?
-        </p>
+          <p className="text-center text-gray-500 ">
+            How many compressed NFTs do you want to store?
+          </p>
 
-        <section className="space-y-6">
-          <section className="flex items-center justify-center max-w-md mx-auto">
-            <input
-              type="number"
-              name="input"
-              id="input"
-              min={1}
-              className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
-              placeholder="Enter a number"
-              value={treeNodes}
-              onChange={(e) =>
-                setTreeNodes(
-                  // do not allow numbers less than 1, or non-numbers
-                  parseInt(e.target.value ?? 1) ? parseInt(e.target.value) : 1,
-                )
-              }
-            />
-          </section>
+          <section className="space-y-6">
+            <section className="flex items-center justify-center max-w-md mx-auto">
+              <input
+                type="number"
+                name="input"
+                id="input"
+                min={1}
+                className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
+                placeholder="Enter a number"
+                value={treeNodes}
+                onChange={(e) =>
+                  setTreeNodes(
+                    // do not allow numbers less than 1, or non-numbers
+                    parseInt(e.target.value ?? 1)
+                      ? parseInt(e.target.value)
+                      : 1,
+                  )
+                }
+              />
+            </section>
 
-          {/* <p className="text-center text-gray-500 ">
+            {/* <p className="text-center text-gray-500 ">
             Not sure on your NFT collection size? Choose one of these.
           </p>
 
@@ -172,35 +177,36 @@ export default function Page() {
             </button>
           </section> */}
 
-          <p className="text-center text-gray-500 ">
-            The closest tree depth of{" "}
-            <span className="underline">{closestTreeDepth}</span> can store up
-            to{" "}
-            <span className="underline">
-              {numberFormatter(Math.pow(2, closestTreeDepth))}
-            </span>{" "}
-            assets
-          </p>
+            <p className="text-center text-gray-500 ">
+              The closest tree depth of{" "}
+              <span className="underline">{closestTreeDepth}</span> can store up
+              to{" "}
+              <span className="underline">
+                {numberFormatter(Math.pow(2, closestTreeDepth))}
+              </span>{" "}
+              assets
+            </p>
 
-          <section className="grid grid-cols-3 gap-4">
-            {treeOptionsList.map((treeData, id) => (
-              <DataCard
-                key={id}
-                treeData={treeData}
-                maxDepth={treeData.maxDepth}
-                canopyDepth={treeData.canopyDepth}
-                cost={costListing[id]}
-              />
-            ))}
+            <section className="grid grid-cols-3 gap-4">
+              {treeOptionsList.map((treeData, id) => (
+                <DataCard
+                  key={id}
+                  treeData={treeData}
+                  maxDepth={treeData.maxDepth}
+                  canopyDepth={treeData.canopyDepth}
+                  cost={costListing[id]}
+                />
+              ))}
+            </section>
           </section>
-        </section>
 
-        <p className="max-w-md mx-auto text-center text-gray-500">
-          The cost of creating Compressed NFTs can vary based on the tree size
-          values set at creation. These values cannot be changed once the tree
-          is created.
-        </p>
-      </section>
-    </main>
+          <p className="max-w-md mx-auto text-center text-gray-500">
+            The cost of creating Compressed NFTs can vary based on the tree size
+            values set at creation. These values cannot be changed once the tree
+            is created.
+          </p>
+        </section>
+      </main>
+    </DefaultLayout>
   );
 }
