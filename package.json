@@ -1,6 +1,13 @@
 {
   "name": "compressed.app",
   "version": "0.1.0",
+  "author": {
+    "name": "Nick Frostbutter",
+    "url": "https://nick.af"
+  },
+  "engines": {
+    "node": ">=16"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
