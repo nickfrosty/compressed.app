@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import type { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
+import { useEffect, useMemo, useState } from "react";
 
 import DataCard from "@/components/DataCard";
 import { numberFormatter } from "@/utils/helpers";
@@ -16,6 +17,11 @@ import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js";
 const defaultDepthPair: ValidDepthSizePair = {
   maxDepth: 3,
   maxBufferSize: 8,
+};
+
+// define page specific seo settings
+const seo: NextSeoProps = {
+  title: "estimate costs for compressed NFTs",
 };
 
 export default function Page() {
@@ -119,7 +125,7 @@ export default function Page() {
   }, [treeNodes]);
 
   return (
-    <DefaultLayout>
+    <DefaultLayout seo={seo}>
       <main className="container py-10 space-y-8 md:py-20">
         <section className="space-y-4">
           <h1 className="text-4xl text-center">Compressed NFT Calculator</h1>
