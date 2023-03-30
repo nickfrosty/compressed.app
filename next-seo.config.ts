@@ -2,32 +2,32 @@ import { DefaultSeoProps } from "next-seo";
 
 const config: DefaultSeoProps = {
   // configure the title settings
-  title: "Nick Frostbutter",
-  titleTemplate: `Nick Frostbutter - %s`,
-  defaultTitle: "Nick Frostbutter",
+  title: "compressed.app",
+  titleTemplate: `compressed.app - %s`,
+  defaultTitle: "compressed.app",
   description:
-    "Hi! I'm Nick, a full stack developer and submarine veteran. In my free time, I write software and technical articles.",
+    "Estimate costs for compressed NFTs. Discover the wonders of State Compression, and concurrent Merkle trees on Solana",
 
   // social media card data
   openGraph: {
-    site_name: "Nick Frostbutter",
+    site_name: "compressed.app",
     locale: "en_US",
     type: "website",
-    url: "https://nick.af/",
+    url: "https://compressed.app/",
     images: [
       {
-        url: "https://nick.af/img/nick.jpg",
-        width: 256,
-        height: 256,
-        alt: "Nick Frostbutter",
+        url: "https://compressed.app/og.png",
+        // width: 256,
+        // height: 256,
+        alt: "compressed.app",
       },
     ],
   },
   twitter: {
     handle: `@nickfrosty`,
     site: `@nickfrosty`,
-    cardType: "summary",
-    // cardType: "summary_large_image",
+    // cardType: "summary",
+    cardType: "summary_large_image",
   },
 };
 
