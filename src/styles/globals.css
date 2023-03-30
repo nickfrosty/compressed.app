@@ -1,0 +1,40 @@
+/* for the love of tailwind */
+@tailwind base;
+@tailwind components;
+
+body {
+  @apply bg-slate-100;
+  /* @apply font-sans; */
+}
+
+.container {
+  @apply max-w-3xl mx-auto;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea {
+  @apply bg-white border border-gray-300;
+  @apply px-4 py-2 rounded-lg;
+}
+
+.btn,
+button {
+  @apply border border-transparent rounded-lg;
+  @apply px-4 py-2 rounded-lg;
+}
+.btn-blue {
+  @apply text-white bg-blue-400 hover:bg-blue-500;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-semibold;
+}
+
+/* utilities at the end */
+@tailwind utilities;

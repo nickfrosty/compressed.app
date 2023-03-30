@@ -1,0 +1,28 @@
+/*
+    Style the tree data cards
+*/
+
+.card {
+  @apply bg-white border border-gray-300;
+  @apply p-6 rounded-lg;
+  @apply space-y-1;
+}
+
+.cost {
+  @apply flex items-center gap-2 text-lg align-middle;
+}
+
+/* style the table portion */
+.table {
+  @apply w-full text-gray-600;
+}
+.table .label {
+  @apply text-left;
+  @apply flex items-center gap-1;
+}
+.table .label svg {
+  @apply w-4 h-4;
+}
+.table .value {
+  @apply text-right;
+}
