@@ -120,9 +120,9 @@ export default function Page() {
 
   return (
     <DefaultLayout>
-      <main className="container py-20 space-y-8">
+      <main className="container py-10 space-y-8 md:py-20">
         <section className="space-y-4">
-          <h1 className="text-4xl text-center">State Compression Calculator</h1>
+          <h1 className="text-4xl text-center">Compressed NFT Calculator</h1>
 
           <p className="text-center text-gray-500 ">
             How many compressed NFTs do you want to store?
@@ -187,7 +187,7 @@ export default function Page() {
               assets
             </p>
 
-            <section className="grid grid-cols-3 gap-4">
+            <section className="grid gap-4 md:grid-cols-3">
               {treeOptionsList.map((treeData, id) => (
                 <DataCard
                   key={id}
