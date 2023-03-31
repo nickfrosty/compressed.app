@@ -16,7 +16,7 @@ const config: DefaultSeoProps = {
     url: "https://compressed.app/",
     images: [
       {
-        url: "https://compressed.app/og.png",
+        url: "https://compressed.app/og-simple.png",
         // width: 256,
         // height: 256,
         alt: "compressed.app",

@@ -34,7 +34,7 @@ export default function DataCardGrid({
       ))}
 
       <div className={`${styles.card} col-span-full text-center`}>
-        <p className="items-center justify-center gap-2 text-center md:flex">
+        <div className="items-center justify-center gap-2 text-center md:flex">
           <h4 className={`${styles.cost}  justify-center`}>
             <span>vs</span>
             <Image
@@ -51,7 +51,7 @@ export default function DataCardGrid({
           <span className={`${styles.cost}  justify-center`}>
             for the uncompressed equivalent
           </span>
-        </p>
+        </div>
         <p className="text-gray-500">
           Each uncompressed NFT costs approximately{" "}
           <span className="underline">
