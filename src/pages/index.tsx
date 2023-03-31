@@ -4,7 +4,6 @@ import type { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import { useEffect, useMemo, useState } from "react";
 
-import DataCard from "@/components/DataCard";
 import { numberFormatter } from "@/utils/helpers";
 import {
   getConcurrentMerkleTreeAccountSize,
@@ -12,6 +11,7 @@ import {
   ValidDepthSizePair,
 } from "@solana/spl-account-compression";
 import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js";
+import DataCardGrid from "@/components/DataCardGrid";
 
 // define the default depth pair
 const defaultDepthPair: ValidDepthSizePair = {
@@ -193,17 +193,11 @@ export default function Page() {
               assets
             </p>
 
-            <section className="grid gap-4 md:grid-cols-3">
-              {treeOptionsList.map((treeData, id) => (
-                <DataCard
-                  key={id}
-                  treeData={treeData}
-                  maxDepth={treeData.maxDepth}
-                  canopyDepth={treeData.canopyDepth}
-                  cost={costListing[id]}
-                />
-              ))}
-            </section>
+            <DataCardGrid
+              treeOptionsList={treeOptionsList}
+              treeNodes={parseInt(treeNodes.toString())}
+              costListing={costListing}
+            />
           </section>
 
           <p className="max-w-md mx-auto text-center text-gray-500">

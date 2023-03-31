@@ -10,11 +10,12 @@
 
 .cost {
   @apply flex items-center gap-2 text-lg align-middle;
+  @apply font-semibold;
 }
 
 /* style the table portion */
 .table {
-  @apply w-full text-gray-600;
+  @apply w-full text-gray-500;
 }
 .table .label {
   @apply text-left;

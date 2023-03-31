@@ -36,5 +36,14 @@ h4 {
   @apply font-semibold;
 }
 
+/* 
+  Globally reusable component styles
+*/
+.card {
+  @apply bg-white border border-gray-300;
+  @apply p-6 rounded-lg;
+  @apply space-y-1;
+}
+
 /* utilities at the end */
 @tailwind utilities;
