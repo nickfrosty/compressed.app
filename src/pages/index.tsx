@@ -13,6 +13,14 @@ import {
 import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js";
 import DataCardGrid from "@/components/DataCardGrid";
 
+// make a simple, deduplicated list of the allowed depths
+const allDepthSizes = ALL_DEPTH_SIZE_PAIRS.flatMap(
+  (pair) => pair.maxDepth,
+).filter((item, pos, self) => self.indexOf(item) == pos);
+
+// extract the largest depth that is allowed
+const largestDepth = allDepthSizes[allDepthSizes.length - 1];
+
 // define the default depth pair
 const defaultDepthPair: ValidDepthSizePair = {
   maxDepth: 3,
@@ -47,14 +55,14 @@ export default function Page() {
     /**
      * The only valid depthSizePairs are stored in the on-chain program and SDK
      */
-    for (let i = 0; i <= ALL_DEPTH_SIZE_PAIRS.length; i++) {
-      if (Math.pow(2, ALL_DEPTH_SIZE_PAIRS[i].maxDepth) >= nodes) {
-        maxDepth = ALL_DEPTH_SIZE_PAIRS[i].maxDepth;
+    for (let i = 0; i <= allDepthSizes.length; i++) {
+      if (Math.pow(2, allDepthSizes[i]) >= nodes) {
+        maxDepth = allDepthSizes[i];
         break;
       }
     }
 
-    // get the maxBufferSize for the closest maxDepth
+    // get the maxBufferSize for the closest maxDepth (reversing it to get the largest buffer by default)
     const maxBufferSize =
       ALL_DEPTH_SIZE_PAIRS.filter((pair) => pair.maxDepth == maxDepth)?.[0]
         ?.maxBufferSize ?? defaultDepthPair.maxBufferSize;
@@ -141,6 +149,7 @@ export default function Page() {
                 name="input"
                 id="input"
                 min={1}
+                max={Math.pow(2, largestDepth)}
                 className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
                 placeholder="Enter a number"
                 value={treeNodes}
@@ -148,7 +157,10 @@ export default function Page() {
                   setTreeNodes(
                     // do not allow numbers less than 1, or non-numbers
                     parseInt(e.target.value ?? 1)
-                      ? parseInt(e.target.value)
+                      ? // also only allow up to the max number of assets in the largest tree
+                        parseInt(e.target.value) > Math.pow(2, largestDepth)
+                        ? Math.pow(2, largestDepth)
+                        : parseInt(e.target.value)
                       : 1,
                   )
                 }
