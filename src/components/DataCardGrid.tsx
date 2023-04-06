@@ -24,13 +24,7 @@ export default function DataCardGrid({
   return (
     <section className="grid gap-4 md:grid-cols-3">
       {treeOptionsList.map((treeData, id) => (
-        <DataCard
-          key={id}
-          treeData={treeData}
-          maxDepth={treeData.maxDepth}
-          canopyDepth={treeData.canopyDepth}
-          cost={costListing[id]}
-        />
+        <DataCard key={id} treeData={treeData} cost={costListing[id]} />
       ))}
 
       <div className={`${styles.card} col-span-full text-center`}>

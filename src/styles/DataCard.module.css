@@ -5,7 +5,7 @@
 .card {
   @apply bg-white border border-gray-300;
   @apply p-6 rounded-lg;
-  @apply space-y-1;
+  @apply space-y-2;
 }
 
 .cost {

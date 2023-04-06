@@ -8,4 +8,5 @@ type TreeOptions = {
   proofBytes?: number;
   space?: number;
   cost?: number;
+  message?: string;
 };

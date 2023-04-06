@@ -76,17 +76,20 @@ export default function Page() {
         maxDepth,
         maxBufferSize,
         canopyDepth: 0,
+        message: "Least composable, lowest cost",
       },
       {
         maxDepth,
         maxBufferSize,
         // negative numbers are bad :/
         canopyDepth: maxCanopyDepth - 3 >= 0 ? maxCanopyDepth - 3 : 0,
+        message: "Highly composable, moderate cost",
       },
       {
         maxDepth,
         maxBufferSize,
         canopyDepth: maxCanopyDepth,
+        message: "Most composable, highest cost",
       },
     ]);
 
