@@ -159,9 +159,9 @@ export default function Page() {
               <button
                 type="button"
                 className="font-mono text-sm btn btn-blue hover:-mt-1"
-                onClick={() => setTreeNodes(100_000_000)}
+                onClick={() => setTreeNodes(10_000_000)}
               >
-                100 million
+                10 million
               </button>
               <button
                 type="button"

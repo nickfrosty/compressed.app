@@ -10,6 +10,9 @@ import DataCard from "@/components/DataCard";
 // define the base cost of uncompressed NFTs (is SOL)
 const UNCOMPRESSED_COST: number = 0.012;
 
+// define the base transaction cost
+const TRANSACTION_COST: number = 0.000005;
+
 type ComponentProps = {
   treeOptionsList: TreeOptions[];
   treeNodes: number;
@@ -50,10 +53,19 @@ export default function DataCardGrid({
           Each uncompressed NFT costs approximately{" "}
           <span className="underline">
             {numberFormatter(UNCOMPRESSED_COST)} SOL
-          </span>
-          . And a tree with proof size of <span className="underline">3</span>{" "}
-          has the <span className="font-semibold">same</span> composability
-          level as its uncompressed NFT counterpart.
+          </span>{" "}
+          for on-chain storage. And a tree with proof size of{" "}
+          <span className="underline">3</span> has the{" "}
+          <span className="font-semibold">same</span> composability level as its
+          uncompressed NFT counterpart.
+        </p>
+      </div>
+
+      <div className={`col-span-full text-center`}>
+        <p className="text-sm text-gray-500">
+          *plus the transaction costs of ~
+          {numberFormatter(TRANSACTION_COST * treeNodes).toString()} SOL to mint
+          all {numberFormatter(treeNodes).toString()} NFTs.
         </p>
       </div>
     </section>
