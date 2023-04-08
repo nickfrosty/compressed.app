@@ -138,82 +138,88 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <main className="container py-10 space-y-8 md:py-20">
-        <section className="space-y-4">
-          <h1 className="text-4xl text-center">Compressed NFT Calculator</h1>
+        <section className="space-y-6">
+          <section className="space-y-2">
+            <h1 className="text-4xl text-center">Compressed NFT Calculator</h1>
 
-          <p className="text-center text-gray-500 ">
-            How many compressed NFTs do you want to store?
-          </p>
+            <p className="text-center text-gray-500">
+              How many compressed NFTs do you want to store?
+            </p>
+          </section>
 
-          <section className="space-y-6">
-            <section className="flex items-center justify-center max-w-md mx-auto">
-              <input
-                type="number"
-                name="input"
-                id="input"
-                min={1}
-                max={Math.pow(2, largestDepth)}
-                className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
-                placeholder="Enter a number"
-                value={treeNodes}
-                onChange={(e) =>
-                  setTreeNodes(
-                    // do not allow numbers less than 1, or non-numbers
-                    parseInt(e.target.value ?? 1)
-                      ? // also only allow up to the max number of assets in the largest tree
-                        parseInt(e.target.value) > Math.pow(2, largestDepth)
-                        ? Math.pow(2, largestDepth)
-                        : parseInt(e.target.value)
-                      : 1,
-                  )
-                }
-              />
+          <section className="space-y-2">
+            <section className="flex items-center justify-center gap-3">
+              <button
+                type="button"
+                className="font-mono text-sm btn btn-blue hover:-mt-1"
+                onClick={() => setTreeNodes(1_000_000)}
+              >
+                1 million
+              </button>
+              <button
+                type="button"
+                className="font-mono text-sm btn btn-blue hover:-mt-1"
+                onClick={() => setTreeNodes(100_000_000)}
+              >
+                100 million
+              </button>
+              <button
+                type="button"
+                className="font-mono text-sm btn btn-blue hover:-mt-1"
+                onClick={() => setTreeNodes(1_000_000_000)}
+              >
+                1 billion
+              </button>
             </section>
 
-            {/* <p className="text-center text-gray-500 ">
-            Not sure on your NFT collection size? Choose one of these.
-          </p>
-
-          <section className="flex items-center justify-center gap-3 ">
-            <button
-              type="button"
-              className="font-mono text-sm btn btn-blue"
-              onClick={() => setTreeNodes(10_000)}
-            >
-              10,000 ?
-            </button>
-            <button
-              type="button"
-              className="font-mono text-sm btn btn-blue"
-              onClick={() => setTreeNodes(25_000)}
-            >
-              25,000 ?
-            </button>
-            <button
-              type="button"
-              className="font-mono text-sm btn btn-blue"
-              onClick={() => setTreeNodes(1_000_000)}
-            >
-              1,000,000 ?
-            </button>
-          </section> */}
-
-            <p className="text-center text-gray-500 ">
-              The closest tree depth of{" "}
-              <span className="underline">{closestTreeDepth}</span> can store up
-              to{" "}
-              <span className="underline">
-                {numberFormatter(Math.pow(2, closestTreeDepth))}
-              </span>{" "}
-              assets
+            <p className="text-sm text-center text-gray-500">
+              (or just type any number you want)
             </p>
 
-            <DataCardGrid
-              treeOptionsList={treeOptionsList}
-              treeNodes={parseInt(treeNodes.toString())}
-              costListing={costListing}
-            />
+            <section className="flex items-center justify-center max-w-md mx-auto">
+              <input
+                type="text"
+                className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
+                placeholder="Enter a number"
+                value={treeNodes.toLocaleString() ?? 1}
+                onChange={(e) => {
+                  // prepare the string value, remove commas
+                  let value = e.target.value.replace(/,/g, "");
+
+                  // prevent decimal values
+                  if (value.lastIndexOf(".") >= 0)
+                    value = value.substring(0, value.lastIndexOf("."));
+
+                  // save the filtered and parsed number in the state, maintaining within the min/max values
+                  setTreeNodes(
+                    // do not allow numbers less than 1, or non-numbers
+                    parseInt(value ?? 1)
+                      ? // also only allow up to the max number of assets in the largest tree
+                        parseInt(value) > Math.pow(2, largestDepth)
+                        ? Math.pow(2, largestDepth)
+                        : parseInt(value)
+                      : 1,
+                  );
+                }}
+              />
+            </section>
           </section>
+
+          <p className="text-center text-gray-500">
+            The closest tree depth of{" "}
+            <span className="underline">{closestTreeDepth}</span> can store up
+            to{" "}
+            <span className="underline">
+              {numberFormatter(Math.pow(2, closestTreeDepth))}
+            </span>{" "}
+            assets
+          </p>
+
+          <DataCardGrid
+            treeOptionsList={treeOptionsList}
+            treeNodes={parseInt(treeNodes.toString())}
+            costListing={costListing}
+          />
 
           <p className="max-w-md mx-auto text-center text-gray-500">
             The cost of creating Compressed NFTs can vary based on the tree size

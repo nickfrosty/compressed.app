@@ -26,7 +26,7 @@ button {
   @apply px-4 py-2 rounded-lg;
 }
 .btn-blue {
-  @apply text-white bg-blue-400 hover:bg-blue-500;
+  @apply text-white bg-gray-800 hover:bg-blue-500;
 }
 
 h1,
