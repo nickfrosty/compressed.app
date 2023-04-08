@@ -25,7 +25,7 @@ export default function AppHeader({}: ComponentProps) {
         {/* this will be a button that does later... */}
         {/* <button className="">something</button> */}
         <Link
-          href={"https://github.com/solana-developers/compressed-nfts/#readme"}
+          href={"https://edge.docs.solana.com/learn/state-compression"}
           className="btn"
         >
           Learn More
