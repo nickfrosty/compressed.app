@@ -7,8 +7,12 @@ import styles from "@/styles/DataCard.module.css";
 import { numberFormatter } from "@/utils/helpers";
 import DataCard from "@/components/DataCard";
 
-// define the base cost of uncompressed NFTs (is SOL)
-const UNCOMPRESSED_COST: number = 0.012;
+/**
+ * the base cost of uncompressed NFTs (is SOL and not including tx fees):
+ * - prior to metaplex fees: 0.012
+ * - with current metaplex fees: 0.024
+ */
+const UNCOMPRESSED_COST: number = 0.024;
 
 // define the base transaction cost
 const TRANSACTION_COST: number = 0.000005;
