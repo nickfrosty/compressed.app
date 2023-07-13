@@ -58,8 +58,8 @@ export default function DataCardGrid({
           <span className="underline">
             {numberFormatter(UNCOMPRESSED_COST)} SOL
           </span>{" "}
-          for on-chain storage. And a tree with proof size of{" "}
-          <span className="underline">3</span> has the{" "}
+          for on-chain storage and Metaplex protocol fees. And a tree with proof
+          size of <span className="underline">3</span> has the{" "}
           <span className="font-semibold">same</span> composability level as its
           uncompressed NFT counterpart.
         </p>
