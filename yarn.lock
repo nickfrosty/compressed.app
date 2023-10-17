@@ -337,10 +337,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-account-compression@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@solana/spl-account-compression/-/spl-account-compression-0.1.7.tgz#d1ac7e6ecb73da7fd66d998334ce1fca47931726"
-  integrity sha512-7BKXDpm2rRxmkIWAxq7jm/haRvLp4ZOaM9NMz3+zZtE+z+cWPY9lRKEWdH+RCAWNm1b0J0J+seqwb3hgf79nkA==
+"@solana/spl-account-compression@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@solana/spl-account-compression/-/spl-account-compression-0.1.10.tgz#b3135ce89349d6090832b3b1d89095badd57e969"
+  integrity sha512-IQAOJrVOUo6LCgeWW9lHuXo6JDbi4g3/RkQtvY0SyalvSWk9BIkHHe4IkAzaQw8q/BxEVBIjz8e9bNYWIAESNw==
   dependencies:
     "@metaplex-foundation/beet" "^0.7.1"
     "@metaplex-foundation/beet-solana" "^0.4.0"
