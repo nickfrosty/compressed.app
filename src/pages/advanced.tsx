@@ -103,7 +103,7 @@ export default function Page() {
           </section>
 
           <section className="grid gap-4 md:grid-cols-2">
-            <section className="grid gap-4 p-4 border border-gray-300 rounded-xl">
+            <section className="grid gap-4 p-5 border border-gray-300 rounded-xl">
               <div className="input-wrapper">
                 <label htmlFor="depth">
                   Max depth{" "}
