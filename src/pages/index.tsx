@@ -142,9 +142,7 @@ export default function Page() {
 
   // update the tree cost values when the treeNode changes
   useEffect(() => {
-    (async () => {
-      await getCostForAllTrees();
-    })();
+    getCostForAllTrees();
   }, [treeNodes]);
 
   return (
