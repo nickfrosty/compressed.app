@@ -8,24 +8,10 @@ import { numberFormatter } from "@/utils/helpers";
 import {
   getConcurrentMerkleTreeAccountSize,
   ALL_DEPTH_SIZE_PAIRS,
-  ValidDepthSizePair,
 } from "@solana/spl-account-compression";
 import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js";
 import DataCardGrid from "@/components/DataCardGrid";
-
-// make a simple, deduplicated list of the allowed depths
-const allDepthSizes = ALL_DEPTH_SIZE_PAIRS.flatMap(
-  (pair) => pair.maxDepth,
-).filter((item, pos, self) => self.indexOf(item) == pos);
-
-// extract the largest depth that is allowed
-const largestDepth = allDepthSizes[allDepthSizes.length - 1];
-
-// define the default depth pair
-const defaultDepthPair: ValidDepthSizePair = {
-  maxDepth: 3,
-  maxBufferSize: 8,
-};
+import { allDepthSizes, defaultDepthPair, largestDepth } from "@/const";
 
 // define page specific seo settings
 const seo: NextSeoProps = {
