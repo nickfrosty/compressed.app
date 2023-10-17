@@ -2,7 +2,7 @@
 
 import type { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { numberFormatter } from "@/utils/helpers";
 import {
@@ -97,6 +97,32 @@ export default function Page() {
     return maxDepth;
   }, [treeNodes]);
 
+  /**
+   *
+   */
+  const handleMintNumberChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      // prepare the string value, remove commas
+      let value = e.target.value.replace(/,/g, "");
+
+      // prevent decimal values
+      if (value.lastIndexOf(".") >= 0)
+        value = value.substring(0, value.lastIndexOf("."));
+
+      // save the filtered and parsed number in the state, maintaining within the min/max values
+      setTreeNodes(
+        // do not allow numbers less than 1, or non-numbers
+        parseInt(value ?? 1)
+          ? // also only allow up to the max number of assets in the largest tree
+            parseInt(value) > Math.pow(2, largestDepth)
+            ? Math.pow(2, largestDepth)
+            : parseInt(value)
+          : 1,
+      );
+    },
+    [setTreeNodes, largestDepth],
+  );
+
   // function to request the actual cost for to store each of the different tree sizes from the RPC
   async function getCostForAllTrees() {
     if (loading) return;
@@ -182,25 +208,7 @@ export default function Page() {
                 className="max-w-[12rem] mx-auto font-mono text-xl text-center place-self-center"
                 placeholder="Enter a number"
                 value={treeNodes.toLocaleString() ?? 1}
-                onChange={(e) => {
-                  // prepare the string value, remove commas
-                  let value = e.target.value.replace(/,/g, "");
-
-                  // prevent decimal values
-                  if (value.lastIndexOf(".") >= 0)
-                    value = value.substring(0, value.lastIndexOf("."));
-
-                  // save the filtered and parsed number in the state, maintaining within the min/max values
-                  setTreeNodes(
-                    // do not allow numbers less than 1, or non-numbers
-                    parseInt(value ?? 1)
-                      ? // also only allow up to the max number of assets in the largest tree
-                        parseInt(value) > Math.pow(2, largestDepth)
-                        ? Math.pow(2, largestDepth)
-                        : parseInt(value)
-                      : 1,
-                  );
-                }}
+                onChange={handleMintNumberChange}
               />
             </section>
           </section>
